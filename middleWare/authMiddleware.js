@@ -7,10 +7,11 @@ export const authMiddleware = (req, res, next) => {
     const accesstoken = authHeader.split(' ')[1]
     if (!accesstoken) res.status(400).json({ message: 'need auth token' })
 
-    const user = jwt.verify(accesstoken, process.env.JWT)
+    const user = jwt.verify(accesstoken, 'nuuts shu!')
     if (!user) res.status(400).json({ message: 'need to sign in' })
 
     req.user = user.data;
 
     next()
 }
+  
