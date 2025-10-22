@@ -1,4 +1,4 @@
-import { postModel } from "../Schema/post.schema.js"
+import { postModel } from "../../Schema/post.schema.js"
 
 export const CreatePost = async (req, res) => {
     const body = req.body
