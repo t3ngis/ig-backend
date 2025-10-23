@@ -1,17 +1,17 @@
 import { userModel } from "../../Schema/user.schema.js";
 import { compare } from "bcrypt";
+import jwt from "jsonwebtoken"
 
-export const login = (req, res) => {
-    const body = req.body;
+export const login = async (req, res) => {
     const JWT_SECRET = "TEST";
-    const { email, password } = body;
-    const user = userModel.findOne({ email });
+    const { email, password } = req.body;
+    const user = await userModel.findOne({ email });
 
     if (user) {
         const hashedPassword = user.password;
-        const isValid = compare(password, hashedPassword);
+        const isValid = await compare(password, hashedPassword);
         if (isValid) {
-            const accessToken = jwt_sign(
+            const accessToken = jwt.sign(
                 {
                     data: user,
                 },

@@ -5,7 +5,7 @@ import { authMiddleware } from '../../middleWare/authMiddleware.js'
 
 const postRouter = express.Router()
 
-postRouter.get("/", authMiddleware, getPosts)
+postRouter.get("/getPosts", authMiddleware, getPosts)
 postRouter.post("/create", authMiddleware, CreatePost)
 
 export default postRouter
